@@ -2,11 +2,12 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 
-
+#for mlr model
 class InputForm(FlaskForm):
     stock = StringField('Enter Stock Symbol:', validators=[DataRequired()])
     submit_mlr = SubmitField('Submit')
 
+#for automl model
 class LongForm(FlaskForm):
     volume = FloatField('Enter Daily Volume:', validators=[DataRequired()])
     rsi = FloatField('Enter RSI:', validators=[DataRequired()])

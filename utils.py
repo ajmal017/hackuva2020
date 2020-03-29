@@ -26,6 +26,7 @@ from google.cloud import language_v1
 from google.cloud.language_v1 import enums
 
 
+#useful constants to define
 
 AV_API_KEY = "LBTZOMI8UAQDHHRK"
 OPEN = "1. open"
@@ -35,11 +36,10 @@ CLOSE = "4. close"
 VOLUME = "5. volume"
 
 #have to use double quotes for JSON!!
+
 def get_raw_input_data(stock="DJI"):
     ts = TimeSeries(key=AV_API_KEY, output_format='pandas')
     d, md = ts.get_daily(symbol=stock, outputsize='compact')
-    #data_dow, meta_data_dow = ts.get_daily(symbol='DJI', outputsize='compact')
-    #data_sp, meta_data_sp = ts.get_daily(symbol='INX',outputsize='compact')
     d = d.loc['2020-01-01':'2020-03-27']
     d[CLOSE] = d[CLOSE].pct_change()
     d = d[d[CLOSE] <= 100]
@@ -72,6 +72,7 @@ def get_model_summary(input_data):
     summary = get_model(input_data).summary()
     results = get_model(input_data)
     return [summary,results]
+
 def get_model(input_data):
     X = input_data.drop('Price_Change', axis=1)
     y = input_data["Price_Change"]
