@@ -1,0 +1,78 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>StockPredictor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-red.min.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+      <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">StockPredictor</span>
+          <div class="mdl-layout-spacer"></div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="demo-ribbon"></div>
+      <main class="demo-main mdl-layout__content">
+        <div class="demo-container mdl-grid">
+          <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+            <h3>What is StockPredictor?</h3>
+              <p>
+                  StockPredictor predicts future stock movement using machine learning and accounts for recent events such as the coronavirus. There are two services StockPredictor currently offers.
+                  <br><br>
+                  1. MLR Model - A Multiple Linear Regression Model that can predict whether a given stock will increase or decrease over the course of the day trained on data from the past 60 days.
+                  Specifically, this model is trained on the following features over time: <b>Technical Indicators</b> (RSI, MACD, Bollinger Bands, SMA),  <b>News Sentiment</b> (Sentiment score and magnitude analyzed from compiled daily headlines), <b>Coronavirus Statistics</b> (% change in deaths, confirmed, and recovered).
+                  <br><br>
+                  2. AutoML Model - A model trained on 20 years of historical data that predict which way the Dow will move in the next 24 hours. This model was trained using <b>Google's AutoML</b> with previously mentioned technical indicators as features.
+              </p>
+
+              <p>
+                  StockPredictor was created on <b> Google Cloud in DataLab </b>. It utilizes the <b> Google News API </b> to gather news relating to the stock market and given stocks.
+              <b>The Google Cloud Natural Language API</b> was used to analyze the sentiment of daily news headlines. The <b>Google Cloud AutoML Tables API </b> was used to create and deploy
+                  a binary classification model on 20 years of historical data that assesses whether the Dow will move up or down on any given day. All this was done on a virtual instance from the <b>Google Compute Engine</b>.
+                  All financial data was accessed using the free <b>Alphavantage API</b>. The web portion of the project was constructed using <b>Flask</b>.
+              </p>
+              <h3>How do I use StockPredictor?</h3>
+              <p>
+                  You can either make a POST request using cURl or another requests library to <b>/api/mlr/</b> and <b>/api/automl_long_term/</b>, or click the get started button below!
+              </p>
+
+          </div>
+        </div>
+      </main>
+    </div>
+    <a href="/start" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Get Started</a>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  </body>
+</html>
